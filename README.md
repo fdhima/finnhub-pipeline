@@ -12,7 +12,7 @@ Kafka Topic
    ↓
 Kafka Consumer
    ↓
-Stream Processor (Spark / Flink)
+Stream Processor with Flink (for law-latency streaming)
    ↓
 Data Lake / Lakehouse (Parquet + Delta/Iceberg)
    ↓
@@ -22,9 +22,6 @@ BI Tool
 
 ```
 
-WebSocket
-
-Streaming Script
 
 # Apache Kafka
 
@@ -72,3 +69,35 @@ Start producer (stream data from Funnhub API):
 ```bash
 python3 producer.py
 ```
+
+
+# Apache Flink
+
+Using Stream Processor for continuously analyzing and processing data as it is generated with the purpose of enabling real-time insights into those streamed data.
+
+This component consumes Kafka topics and performs transformations/analytics in real time.
+
+
+Choosed Apache Flink for it low latency. Another appoach would be Apache Spark, since it offers easy Python intergration.
+
+```
+Kafka Topic: finnhub.trades
+        │
+        ▼
+Apache Flink Job
+   - Windowing: 1 min / 5 min VWAP
+   - Filtering: Symbol-based
+   - Aggregation: Volume, Price stats
+        │
+        ▼
+Output Kafka Topic: finnhub.analytics
+        │
+        ▼
+Consumer / Dashboard / Storage
+```
+
+Install Apache Flink via Docker:
+```bash
+docker pull flink:scala_2.12-java21
+```
+
