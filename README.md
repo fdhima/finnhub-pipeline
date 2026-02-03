@@ -4,7 +4,6 @@ Architecture:
 ```
 Finnhub WebSocket
    ↓
-   (Confluent CLI)
 Python WebSocket client
    ↓
 Kafka Producer
