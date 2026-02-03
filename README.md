@@ -21,6 +21,35 @@ Data Warehouse (Modeled tables)
 BI Tool
 
 ```
+# Docker setup
+Start containers:
+```bash
+docker compose up -d
+```
+
+Flink UI available at: http://localhost:8081
+
+Create Kafka topic:
+```bash
+docker exec -it kafka \
+  /opt/kafka/bin/kafka-topics.sh \
+  --create \
+  --topic finnhub.trades \
+  --bootstrap-server localhost:9092 \
+  --partitions 3 \
+  --replication-factor 1
+```
+
+Optional downstream topics (for Flink output):
+```bash
+docker exec -it kafka \
+  /opt/kafka/bin/kafka-topics.sh \
+  --create \
+  --topic finnhub.trades.1m \
+  --bootstrap-server localhost:9092 \
+  --partitions 3 \
+  --replication-factor 1
+```
 
 
 # Apache Kafka

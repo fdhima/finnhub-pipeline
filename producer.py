@@ -28,11 +28,16 @@ def delivery_report(err, msg):
 def on_message(ws, message):
     try:
         data = json.loads(message)
+        
+        trade = data["data"][0]
 
         enriched = {
             "source": "finnhub",
-            "received_at": time.time(),
-            "payload": data
+            "symbol": trade["s"],
+            "price": trade["p"],
+            "volume": trade["v"],
+            "event_time": trade["t"] / 1000,  # Finnhub uses ms
+            "ingested_at": time.time()
         }
 
         producer.produce(
