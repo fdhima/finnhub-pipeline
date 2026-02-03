@@ -34,9 +34,14 @@ Install Apache Kafka via Docker:
 docker pull apache/kafka:4.1.1
 ```
 
+Start container form Apache Kafka image:
+```bash
+docker run --name apache-kafka -it -d -p 9092:9092 apache/kafka:4.1.1
+```
+
 Create a Kafka topic:
 ```bash
-docker exec -it <container_name> \
+docker exec -it apache-kafka \
   /opt/kafka/bin/kafka-topics.sh \
   --create \
   --topic finnhub.trades \
@@ -47,8 +52,24 @@ docker exec -it <container_name> \
 
 Verify the topic:
 ```bash
-docker exec -it <container_name> \
+docker exec -it apache-kafka \
   /opt/kafka/bin/kafka-topics.sh \
   --list \
   --bootstrap-server localhost:9092
+```
+
+Create ands activate virtual environment (Linux):
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+Start consumer:
+```bash
+python3 consumer.py
+```
+
+Start producer (stream data from Funnhub API):
+```bash
+python3 producer.py
 ```
