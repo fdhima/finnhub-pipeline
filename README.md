@@ -10,7 +10,7 @@ Kafka Producer
    ↓
 Kafka Topic
    ↓
-Consumers
+Kafka Consumer
    ↓
 Stream Processor (Spark / Flink)
    ↓
