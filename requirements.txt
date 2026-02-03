@@ -1,0 +1,4 @@
+pandas
+finnhub-python
+python-dotenv
+websocket-client
