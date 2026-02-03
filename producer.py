@@ -20,12 +20,6 @@ KAFKA_CONFIG = {
 finnhub_client = finnhub.Client(api_key=API_KEY)
 producer = Producer(KAFKA_CONFIG)
 
-# print(finnhub_client.market_status(exchange='US'))
-
-# print(finnhub_client.company_profile2(symbol='AAPL'))
-
-# print(finnhub_client.company_news('AAPL', _from="2025-12-01", to="2026-01-31"))
-
 def delivery_report(err, msg):
     if err is not None:
         print(f"Delivery failed: {err}")
@@ -64,6 +58,7 @@ def on_open(ws):
     # ws.send('{"type":"subscribe","symbol":"AAPL"}')
     # ws.send('{"type":"subscribe","symbol":"AMZN"}')
     ws.send('{"type":"subscribe","symbol":"BINANCE:BTCUSDT"}')
+    ws.send('{"type":"subscribe","symbol":"BINANCE:SOLUSDT"}')
     # ws.send('{"type":"subscribe","symbol":"IC MARKETS:1"}')
 
 if __name__ == "__main__":
