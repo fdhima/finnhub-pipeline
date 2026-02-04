@@ -1,6 +1,0 @@
-pandas
-finnhub-python
-python-dotenv
-websocket-client
-confluent-kafka
-apache-flink
