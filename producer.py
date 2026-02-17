@@ -6,6 +6,7 @@ from kafka import KafkaProducer
 def json_serializer(data):
     return json.dumps(data).encode('utf-8')
 
+
 def get_dummy_data():
     return {
         'sensor_id': random.randint(1, 100),

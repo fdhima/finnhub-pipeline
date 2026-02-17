@@ -6,6 +6,9 @@ set -e
 JAR_VERSION="4.0.0-2.0"
 JAR_NAME="flink-sql-connector-kafka-${JAR_VERSION}.jar"
 JAR_URL="https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka/${JAR_VERSION}/${JAR_NAME}"
+JDBC_JAR = f"https://repo1.maven.org/maven2/org/apache/flink/flink-connector-jdbc-core/${JAR_VERSION}/"
+
+# Update code to download all the needed JARs
 
 if [ ! -f "$JAR_NAME" ]; then
     echo "Downloading $JAR_NAME..."
